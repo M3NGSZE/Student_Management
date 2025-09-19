@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestClient;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -32,8 +31,10 @@ public class CourseController {
                 .message("All attendees have been successfully fetched.")
                 .payload(students)
                 .status(HttpStatus.OK)
-                .time(LocalDateTime.now())
+                .timestamp(LocalDateTime.now())
                 .build();
         return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
     }
+
+
 }
