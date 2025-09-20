@@ -42,7 +42,6 @@ public class StudentController {
 
         Student newStudent = studentService.createStudent(studentRequest);
 
-
         ApiResponse<Student> apiResponse = ApiResponse.<Student>builder()
                 .message("new student has been successfully created.")
                 .payload(newStudent)

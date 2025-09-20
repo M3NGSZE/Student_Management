@@ -1,5 +1,6 @@
 package com.sze.studentmanagement.service.impl;
 
+import com.sze.studentmanagement.mapper.CourseMapper;
 import com.sze.studentmanagement.model.dto.request.CourseRequest;
 import com.sze.studentmanagement.model.entity.Course;
 import com.sze.studentmanagement.repository.CourseRepository;
@@ -21,7 +22,8 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public Course createCourses(Course courseRequest) {
-        return courseRepository.save(courseRequest);
+    public Course createCourses(CourseRequest courseRequest) {
+        Course course = CourseMapper.INSTANCE.courseRequestToCourseRequest(courseRequest);
+        return courseRepository.save(course);
     }
 }

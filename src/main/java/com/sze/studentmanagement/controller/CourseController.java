@@ -1,5 +1,6 @@
 package com.sze.studentmanagement.controller;
 
+import com.sze.studentmanagement.model.dto.request.CourseRequest;
 import com.sze.studentmanagement.model.dto.response.ApiResponse;
 import com.sze.studentmanagement.model.entity.Course;
 import com.sze.studentmanagement.service.CourseService;
@@ -26,8 +27,6 @@ public class CourseController {
 
         List<Course> courses = courseService.getAllCourses();
 
-        System.out.println(courses);
-
         ApiResponse<List<Course>> apiResponse = ApiResponse.<List<Course>>builder()
                 .message("All courses have been successfully fetched.")
                 .payload(courses)
@@ -39,10 +38,9 @@ public class CourseController {
 
     @PostMapping
     @Operation(summary = "add new course")
-    public ResponseEntity<ApiResponse<Course>> getStudents(@RequestBody Course course) {
+    public ResponseEntity<ApiResponse<Course>> getStudents(@RequestBody CourseRequest courseRequest) {
 
-        Course courses = courseService.createCourses(course);
-
+        Course courses = courseService.createCourses(courseRequest);
 
         ApiResponse<Course> apiResponse = ApiResponse.<Course>builder()
                 .message("new course has been successfully created.")
