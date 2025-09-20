@@ -1,5 +1,7 @@
 package com.sze.studentmanagement.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -20,5 +22,6 @@ public class Course {
     private String description;
 
     @ManyToMany(mappedBy = "courses")
+    @JsonManagedReference
     private List<Student> students = new ArrayList<>();
 }

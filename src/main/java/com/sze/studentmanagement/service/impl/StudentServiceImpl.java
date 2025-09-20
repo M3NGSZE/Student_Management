@@ -1,4 +1,4 @@
-package com.sze.studentmanagement.service.serviceImpl;
+package com.sze.studentmanagement.service.impl;
 
 import com.sze.studentmanagement.model.entity.Student;
 import com.sze.studentmanagement.repository.StudentRepository;
