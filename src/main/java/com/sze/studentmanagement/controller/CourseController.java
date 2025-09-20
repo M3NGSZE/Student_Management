@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,6 +38,22 @@ public class CourseController {
                 .timestamp(LocalDateTime.now())
                 .build();
         return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
+    }
+
+    @PostMapping
+    @Operation(summary = "add new course")
+    public ResponseEntity<ApiResponse<Course>> getStudents(Course course) {
+
+        Course courses = courseService.createCourses(course);
+
+
+        ApiResponse<Course> apiResponse = ApiResponse.<Course>builder()
+                .message("new course has been successfully created.")
+                .payload(courses)
+                .status(HttpStatus.CREATED)
+                .timestamp(LocalDateTime.now())
+                .build();
+        return ResponseEntity.status(HttpStatus.CREATED).body(apiResponse);
     }
 
 

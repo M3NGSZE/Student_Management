@@ -1,5 +1,6 @@
 package com.sze.studentmanagement.service.impl;
 
+import com.sze.studentmanagement.model.dto.request.CourseRequest;
 import com.sze.studentmanagement.model.entity.Course;
 import com.sze.studentmanagement.repository.CourseRepository;
 import com.sze.studentmanagement.service.CourseService;
@@ -17,5 +18,10 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public List<Course> getAllCourses() {
         return courseRepository.findAll();
+    }
+
+    @Override
+    public Course createCourses(Course courseRequest) {
+        return courseRepository.save(courseRequest);
     }
 }

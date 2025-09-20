@@ -22,6 +22,7 @@ public class Course {
     private String description;
 
     @ManyToMany(mappedBy = "courses")
-    @JsonManagedReference
+//    @JsonManagedReference
+    @JsonIgnore
     private List<Student> students = new ArrayList<>();
 }
