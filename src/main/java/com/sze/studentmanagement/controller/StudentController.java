@@ -3,7 +3,6 @@ package com.sze.studentmanagement.controller;
 import com.sze.studentmanagement.model.dto.request.StudentRequest;
 import com.sze.studentmanagement.model.dto.response.ApiResponse;
 import com.sze.studentmanagement.model.dto.response.StudentResponse;
-import com.sze.studentmanagement.model.entity.Course;
 import com.sze.studentmanagement.model.entity.Student;
 import com.sze.studentmanagement.service.StudentService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -39,11 +38,11 @@ public class StudentController {
 
     @PostMapping
     @Operation(summary = "add new course")
-    public ResponseEntity<ApiResponse<Student>> getStudents(@RequestBody StudentRequest studentRequest) {
+    public ResponseEntity<ApiResponse<StudentResponse>> getStudents(@RequestBody StudentRequest studentRequest) {
 
-        Student newStudent = studentService.createStudent(studentRequest);
+        StudentResponse newStudent = studentService.createStudent(studentRequest);
 
-        ApiResponse<Student> apiResponse = ApiResponse.<Student>builder()
+        ApiResponse<StudentResponse> apiResponse = ApiResponse.<StudentResponse>builder()
                 .message("new student has been successfully created.")
                 .payload(newStudent)
                 .status(HttpStatus.CREATED)
@@ -54,7 +53,17 @@ public class StudentController {
 
     @PutMapping
     @Operation(summary = "")
-    public ResponseEntity<ApiResponse<Student>> updateStudent(@RequestBody StudentRequest studentRequest) {
-        return null;
+    public ResponseEntity<ApiResponse<StudentResponse>> updateStudent(@RequestParam Long studentId ,@RequestBody StudentRequest studentRequest) {
+
+        StudentResponse studentResponse = studentService.updateStudent(studentId, studentRequest);
+
+        ApiResponse<StudentResponse> apiResponse = ApiResponse.<StudentResponse>builder()
+                .message("student has been successfully updated.")
+                .payload(studentResponse)
+                .status(HttpStatus.OK)
+                .timestamp(LocalDateTime.now())
+                .build();
+
+        return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
     }
 }

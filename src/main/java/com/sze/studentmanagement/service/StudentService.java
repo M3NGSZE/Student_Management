@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface StudentService {
     List<StudentResponse> findAll();
-    Student createStudent(StudentRequest studentRequest);
+    StudentResponse createStudent(StudentRequest studentRequest);
+    StudentResponse updateStudent(Long studentId, StudentRequest studentRequest);
 }
