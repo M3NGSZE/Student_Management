@@ -50,4 +50,10 @@ public class StudentController {
                 .build();
         return ResponseEntity.status(HttpStatus.CREATED).body(apiResponse);
     }
+
+    @PutMapping
+    @Operation(summary = "")
+    public ResponseEntity<ApiResponse<Student>> updateStudent(@RequestBody StudentRequest studentRequest) {
+        return null;
+    }
 }
