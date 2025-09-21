@@ -10,4 +10,5 @@ public interface StudentService {
     List<StudentResponse> findAll();
     StudentResponse createStudent(StudentRequest studentRequest);
     StudentResponse updateStudent(Long studentId, StudentRequest studentRequest);
+    StudentResponse findStudentById(Long studentId);
 }

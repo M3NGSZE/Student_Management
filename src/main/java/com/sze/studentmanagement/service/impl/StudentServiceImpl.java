@@ -43,4 +43,11 @@ public class StudentServiceImpl implements StudentService {
 
         return StudentMapper.INSTANCE.studentToStudentResponse(updateStudent);
     }
+
+    @Override
+    public StudentResponse findStudentById(Long studentId) {
+        Student student = studentRepository.findById(studentId).orElseThrow(() -> new NotFoundExceptionHandler("Student not found with id " + studentId));
+
+        return StudentMapper.INSTANCE.studentToStudentResponse(student);
+    }
 }

@@ -23,6 +23,7 @@ public class StudentController {
     private final StudentService studentService;
 
     @GetMapping
+    @Operation(summary = "get all students")
     public ResponseEntity<ApiResponse<List<StudentResponse>>> getStudents() {
         List<StudentResponse> students = studentService.findAll();
 
@@ -37,7 +38,7 @@ public class StudentController {
     }
 
     @PostMapping
-    @Operation(summary = "add new course")
+    @Operation(summary = "add new student")
     public ResponseEntity<ApiResponse<StudentResponse>> getStudents(@RequestBody StudentRequest studentRequest) {
 
         StudentResponse newStudent = studentService.createStudent(studentRequest);
@@ -51,14 +52,30 @@ public class StudentController {
         return ResponseEntity.status(HttpStatus.CREATED).body(apiResponse);
     }
 
-    @PutMapping
-    @Operation(summary = "")
-    public ResponseEntity<ApiResponse<StudentResponse>> updateStudent(@RequestParam Long studentId ,@RequestBody StudentRequest studentRequest) {
+    @PutMapping("/{studentId}")
+    @Operation(summary = "update student by id")
+    public ResponseEntity<ApiResponse<StudentResponse>> updateStudent(@PathVariable Long studentId ,@RequestBody StudentRequest studentRequest) {
 
         StudentResponse studentResponse = studentService.updateStudent(studentId, studentRequest);
 
         ApiResponse<StudentResponse> apiResponse = ApiResponse.<StudentResponse>builder()
                 .message("student has been successfully updated.")
+                .payload(studentResponse)
+                .status(HttpStatus.OK)
+                .timestamp(LocalDateTime.now())
+                .build();
+
+        return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
+    }
+
+    @GetMapping("/{studentId}")
+    @Operation(summary = "get student by id")
+    public ResponseEntity<ApiResponse<StudentResponse>> findStudentById(@PathVariable Long studentId) {
+
+        StudentResponse studentResponse = studentService.findStudentById(studentId);
+
+        ApiResponse<StudentResponse> apiResponse = ApiResponse.<StudentResponse>builder()
+                .message("student has been successfully founded.")
                 .payload(studentResponse)
                 .status(HttpStatus.OK)
                 .timestamp(LocalDateTime.now())
