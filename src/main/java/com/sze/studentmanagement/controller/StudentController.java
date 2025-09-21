@@ -83,4 +83,22 @@ public class StudentController {
 
         return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
     }
+
+    @DeleteMapping("/{studentId}")
+    @Operation(summary = "get student by id")
+    public ResponseEntity<ApiResponse<StudentResponse>> deleteStudentById(@PathVariable Long studentId) {
+
+        StudentResponse studentResponse = studentService.deleteStudent(studentId);
+
+        ApiResponse<StudentResponse> apiResponse = ApiResponse.<StudentResponse>builder()
+                .message("student has been successfully deleted.")
+                .payload(studentResponse)
+                .status(HttpStatus.OK)
+                .timestamp(LocalDateTime.now())
+                .build();
+
+        return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
+    }
+
+
 }
