@@ -2,6 +2,7 @@ package com.sze.studentmanagement.controller;
 
 import com.sze.studentmanagement.model.dto.request.StudentRequest;
 import com.sze.studentmanagement.model.dto.response.ApiResponse;
+import com.sze.studentmanagement.model.dto.response.StudentResponse;
 import com.sze.studentmanagement.model.entity.Course;
 import com.sze.studentmanagement.model.entity.Student;
 import com.sze.studentmanagement.service.StudentService;
@@ -23,10 +24,10 @@ public class StudentController {
     private final StudentService studentService;
 
     @GetMapping
-    public ResponseEntity<ApiResponse<List<Student>>> getStudents() {
-        List<Student> students = studentService.findAll();
+    public ResponseEntity<ApiResponse<List<StudentResponse>>> getStudents() {
+        List<StudentResponse> students = studentService.findAll();
 
-        ApiResponse<List<Student>> apiResponse = ApiResponse.<List<Student>>builder()
+        ApiResponse<List<StudentResponse>> apiResponse = ApiResponse.<List<StudentResponse>>builder()
                 .message("")
                 .payload(students)
                 .status(HttpStatus.OK)

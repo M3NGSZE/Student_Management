@@ -2,6 +2,7 @@ package com.sze.studentmanagement.service.impl;
 
 import com.sze.studentmanagement.mapper.StudentMapper;
 import com.sze.studentmanagement.model.dto.request.StudentRequest;
+import com.sze.studentmanagement.model.dto.response.StudentResponse;
 import com.sze.studentmanagement.model.entity.Student;
 import com.sze.studentmanagement.repository.StudentRepository;
 import com.sze.studentmanagement.service.StudentService;
@@ -17,9 +18,8 @@ public class StudentServiceImpl implements StudentService {
 //    private final StudentMapper studentMapper;
 
 
-
-    public List<Student> findAll() {
-        return studentRepository.findAll();
+    public List<StudentResponse> findAll() {
+        return StudentMapper.INSTANCE.studentListToStudentResponseList(studentRepository.findAll());
     }
 
     @Override

@@ -30,6 +30,6 @@ public class Student {
             inverseJoinColumns = @JoinColumn(name = "course_id")
     )
 //    @JsonBackReference
-    @JsonIgnore
+//    @JsonIgnore
     private List<Course> courses = new ArrayList<>();
 }
