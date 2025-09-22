@@ -3,7 +3,6 @@ package com.sze.studentmanagement.controller;
 import com.sze.studentmanagement.model.dto.request.StudentRequest;
 import com.sze.studentmanagement.model.dto.response.ApiResponse;
 import com.sze.studentmanagement.model.dto.response.StudentResponse;
-import com.sze.studentmanagement.model.entity.Student;
 import com.sze.studentmanagement.service.StudentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
