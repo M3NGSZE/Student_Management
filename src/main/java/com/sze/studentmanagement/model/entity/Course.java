@@ -21,8 +21,12 @@ public class Course {
     private String courseName;
     private String description;
 
-    @ManyToMany(mappedBy = "courses")
-//    @JsonManagedReference
-//    @JsonIgnore
-    private List<Student> students = new ArrayList<>();
+    @OneToMany(mappedBy = "course")
+    private List<Enrollment> enrollments = new ArrayList<>();
+
 }
+
+//    @ManyToMany(mappedBy = "courses")
+////    @JsonManagedReference
+////    @JsonIgnore
+//    private List<Student> students = new ArrayList<>();

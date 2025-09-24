@@ -19,6 +19,7 @@
 
 
 
+jpa join won't let us custom our own field if we want to add extra field create separate entity
 
 @Entity
 @Table(name = "enrollment_tb")

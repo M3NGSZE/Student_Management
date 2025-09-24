@@ -23,13 +23,17 @@ public class Student {
     private String lastName;
     private String email;
 
-    @ManyToMany
-    @JoinTable(
-            name = "enrollment_tb",
-            joinColumns = @JoinColumn(name = "student_id"),
-            inverseJoinColumns = @JoinColumn(name = "course_id")
-    )
-//    @JsonBackReference
-//    @JsonIgnore
-    private List<Course> courses = new ArrayList<>();
+    @OneToMany(mappedBy = "student")
+    private List<Enrollment> enrollments = new ArrayList<>();
+
 }
+
+//    @ManyToMany
+//    @JoinTable(
+//            name = "enrollment_tb",
+//            joinColumns = @JoinColumn(name = "student_id"),
+//            inverseJoinColumns = @JoinColumn(name = "course_id")
+//    )
+////    @JsonBackReference
+////    @JsonIgnore
+//    private List<Course> courses = new ArrayList<>();
